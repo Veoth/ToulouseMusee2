@@ -1,3 +1,6 @@
+import toulousemusee.Adresse
+import toulousemusee.Gestionnaire
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -91,7 +94,14 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+
+        params['nom'] = "ARCHIVES MUNICIPALES TOULOUSE"
+        params['horairesOuverture'] = "8h-12h"
+        params['telephone'] = "0689649764"
+        params['accesMetro'] = "Rangueil(B)"
+        params['accesBus'] = "2, 15"
+        params['adresse'] = Mock(Adresse)
+        params['gestionnaire'] = Mock(Gestionnaire)
     }
 }
 
