@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 
 @Transactional
 class LoadCSVService {
+    def museeService
 
     Musee musee1;
     Musee musee2;
@@ -98,6 +99,19 @@ class LoadCSVService {
         musee10.save(flush: true)
         musee11.save(flush: true)
         musee12.save(flush: true)
+
+        museeService.insertOrUpdateMusee(musee1, adresse1, gestionnaire1)
+        museeService.insertOrUpdateMusee(musee2, adresse2, gestionnaire2)
+        museeService.insertOrUpdateMusee(musee3, adresse3, gestionnaire1)
+        museeService.insertOrUpdateMusee(musee4, adresse4, gestionnaire3)
+        museeService.insertOrUpdateMusee(musee5, adresse5, gestionnaire4)
+        museeService.insertOrUpdateMusee(musee6, adresse6, gestionnaire2)
+        museeService.insertOrUpdateMusee(musee7, adresse7, gestionnaire1)
+        museeService.insertOrUpdateMusee(musee8, adresse8, gestionnaire2)
+        museeService.insertOrUpdateMusee(musee9, adresse9, gestionnaire4)
+        museeService.insertOrUpdateMusee(musee10, adresse10, gestionnaire2)
+        museeService.insertOrUpdateMusee(musee11, adresse11, gestionnaire1)
+        museeService.insertOrUpdateMusee(musee12, adresse12, gestionnaire1)
 
     }
 }

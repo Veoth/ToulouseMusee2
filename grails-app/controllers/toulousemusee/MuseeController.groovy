@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class MuseeController {
 
+    def museeService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -35,7 +36,8 @@ class MuseeController {
             return
         }
 
-        museeInstance.save flush:true
+        //museeInstance.save flush:true
+        museeService.insertOrUpdateMusee(museeInstance, museeInstance.adresse, museeInstance.gestionnaire)
 
         request.withFormat {
             form multipartForm {
@@ -62,7 +64,8 @@ class MuseeController {
             return
         }
 
-        museeInstance.save flush:true
+        //museeInstance.save flush:true
+        museeService.insertOrUpdateMusee(museeInstance, museeInstance.adresse, museeInstance.gestionnaire)
 
         request.withFormat {
             form multipartForm {
@@ -81,7 +84,8 @@ class MuseeController {
             return
         }
 
-        museeInstance.delete flush:true
+        //museeInstance.delete flush:true
+        museeService.deleteMusee(museeInstance)
 
         request.withFormat {
             form multipartForm {
