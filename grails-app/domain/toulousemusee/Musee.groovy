@@ -17,5 +17,6 @@ class Musee {
         horairesOuverture blank: false
         telephone blank: false
         accesBus blank: false
+        accesMetro nullable: true
     }
 }
