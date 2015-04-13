@@ -65,7 +65,7 @@ class LoadCSVService {
         adresse12.save(flush: true)
 
         gestionnaire1 = new Gestionnaire(nom: "Mairie de Toulouse - DGA Culture")
-        gestionnaire2 = new Gestionnaire(nom: "Association  ")
+        gestionnaire2 = new Gestionnaire(nom: "Association")
         gestionnaire3 = new Gestionnaire(nom: "Autre institution publique")
         gestionnaire4 = new Gestionnaire(nom: "Structure commerciale")
 
