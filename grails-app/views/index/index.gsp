@@ -70,7 +70,15 @@
 		</style>
 	</head>
 	<body>
+	<h1>Mes musées favoris :</h1>
 
+	<ul>
+		<g:each in="${museeFavoris}" status="i" var="favori">
+			<li>${fieldValue(bean: favori, field: "nom")}</li>
+		</g:each>
+	</ul>
+
+	<h1>Recherche de musées</h1><br/>
 
     <g:form>
         <label for="inNomMusee">Nom (ou partie) du musée : </label>
@@ -125,7 +133,9 @@
                 <td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
 
 				<td>
-					<a  class="myButton" href="${createLink(controller: "index",action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}"> Ajouter à ma liste</a>
+					<g:if test="${!museeFavoris.toList().id.contains(museeInstance.id)}">
+						<a class="addToFavoris" href="${createLink(controller: "index",action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}"> Ajouter à ma liste</a>
+					</g:if>
 				</td>
             </tr>
         </g:each>
