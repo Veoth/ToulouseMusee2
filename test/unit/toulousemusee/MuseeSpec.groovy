@@ -23,6 +23,7 @@ class MuseeSpec extends Specification {
         unAccesMetro           | _
         "Fac de pharamcie (B)" | _
         ""                     | _
+        null                   | _
 
     }
 
@@ -45,7 +46,6 @@ class MuseeSpec extends Specification {
         "Le louvre" | "fermé"               | ""           | "5"          | "Roserai"    | Mock(Adresse)   | Mock(Gestionnaire)
         "Le louvre" | "fermé"               | "06569832"   | null         | "Roserai"    | Mock(Adresse)   | Mock(Gestionnaire)
         "Le louvre" | "fermé"               | "06569832"   | ""           | "Roserai"    | Mock(Adresse)   | Mock(Gestionnaire)
-        "Le louvre" | "fermé"               | "06569832"   | "5"          | null         | Mock(Adresse)   | Mock(Gestionnaire)
         "Le louvre" | "fermé"               | "06569832"   | "5"          | "Roserai"    | null            | Mock(Gestionnaire)
         "Le louvre" | "fermé"               | "06569832"   | "4"          | "Roserai"    | Mock(Adresse)   | null
     }

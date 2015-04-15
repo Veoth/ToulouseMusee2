@@ -1,4 +1,4 @@
-<%@ page import="toulousemusee.Adresse" %>
+<%@ page import="toulousemusee.Musee; toulousemusee.Adresse" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -77,7 +77,7 @@
         <g:textField name="inNomMusee"/><br/>
 
         <label for="codePostal">Code postal du musée : </label>
-        <g:select name="codePostal" from="${Adresse.list().codePostal.unique()}" /><br/>
+        <g:select name="codePostal" from="${Adresse.list().codePostal.unique()+ ""}" /><br/>
 
         <label for="inNomRue">Nom (ou partie) de la rue du musée : </label>
         <g:textField name="inNomRue"/><br/>
@@ -102,6 +102,8 @@
 
             <th><g:message code="musee.gestionnaire.label" default="Gestionnaire" /></th>
 
+			<th>Ajout favoris</th>
+
         </tr>
         </thead>
         <tbody>
@@ -121,12 +123,16 @@
                 <td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
 
                 <td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
+
+				<td>
+					<a  class="myButton" href="${createLink(controller: "index",action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}"> Ajouter à ma liste</a>
+				</td>
             </tr>
         </g:each>
         </tbody>
     </table>
     <div class="pagination">
-        <g:paginate total="${museeInstanceCount ?: 0}" />
+        <g:paginate total="${museeInstanceCount ?: 0}" max="5" />
     </div>
 </body>
-</html
+</html>

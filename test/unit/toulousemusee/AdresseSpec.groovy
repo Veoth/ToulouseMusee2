@@ -23,6 +23,7 @@ class AdresseSpec extends Specification {
         uneRue             | uneVille   | unCP      | unNumero
         "rue des archives" | "Toulouse" | "31100"   | "19"
         "rue des archives" | "Lyon"     | "69000"   | ""
+        "rue des archives" | "Toulouse" | "31100"   | null
 
     }
 
@@ -43,6 +44,5 @@ class AdresseSpec extends Specification {
         "rue des archives" | ""         | "31100"   | "5"
         "rue des archives" | "Toulouse" | null      | "5"
         "rue des archives" | "Toulouse" | ""        | "5"
-        "rue des archives" | "Toulouse" | "31100"   | null
     }
 }

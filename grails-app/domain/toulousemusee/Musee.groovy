@@ -19,4 +19,6 @@ class Musee {
         accesBus blank: false
         accesMetro nullable: true
     }
+
+
 }
