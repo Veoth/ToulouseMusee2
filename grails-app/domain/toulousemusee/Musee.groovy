@@ -20,5 +20,8 @@ class Musee {
         accesMetro nullable: true
     }
 
-
+    static mapping = {
+        gestionnaire fetch: 'join'
+        adresse fetch:  'join'
+    }
 }
