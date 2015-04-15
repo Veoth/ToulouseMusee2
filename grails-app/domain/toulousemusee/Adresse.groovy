@@ -7,6 +7,12 @@ class Adresse {
     String codePostal
     String ville
 
+    String toString() {
+
+        String res =  (numero ?: "") + " " + rue + " " + codePostal + " " + ville
+        return res
+    }
+
     static constraints = {
         rue blank:false
         codePostal blank:false

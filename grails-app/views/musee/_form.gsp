@@ -38,12 +38,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesMetro', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesMetro', 'error')} ">
 	<label for="accesMetro">
 		<g:message code="musee.accesMetro.label" default="Acces Metro" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="accesMetro" required="" value="${museeInstance?.accesMetro}"/>
+	<g:textField name="accesMetro" value="${museeInstance?.accesMetro}"/>
 
 </div>
 

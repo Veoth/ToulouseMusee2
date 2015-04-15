@@ -24,6 +24,11 @@ class MuseeController {
         respond new Musee(params)
     }
 
+    def doSearchMusee() {
+        def museeList = museeService.searchMusee(params.nomMusee, params.codePostal, params.nomRue)
+        render(view: 'index', model: [MuseeInstanceList: museeList, MuseeInstanceCount: museeList.size()])
+    }
+
     @Transactional
     def save(Musee museeInstance) {
         if (museeInstance == null) {
