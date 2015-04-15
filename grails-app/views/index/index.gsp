@@ -1,6 +1,6 @@
 <%@ page import="toulousemusee.Musee; toulousemusee.Adresse" %>
 <!DOCTYPE html>
-<html>
+<>
 	<head>
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
@@ -67,16 +67,26 @@
 					margin-top: 0;
 				}
 			}
+
+			#musee-favoris {
+				padding: 15px;
+			}
 		</style>
 	</head>
-	<body>
-	<h1>Mes musées favoris :</h1>
+	<g:if test="${museeFavoris}">
+		<div id="musee-favoris">
+			<h1>Mes musées favoris :</h1>
 
-	<ul>
-		<g:each in="${museeFavoris}" status="i" var="favori">
-			<li>${fieldValue(bean: favori, field: "nom")}</li>
-		</g:each>
-	</ul>
+			<ul>
+				<g:each in="${museeFavoris}" status="i" var="favori">
+					<li>
+						${fieldValue(bean: favori, field: "nom")}
+						<a href="${createLink(controller: "index", action: "suppMuseeToFavoris", params: [museeToSupp: favori.id])}"> Supprimer</a>
+					</li>
+				</g:each>
+			</ul>
+		</div>
+	</g:if>
 
 	<h1>Recherche de musées</h1><br/>
 
@@ -134,7 +144,7 @@
 
 				<td>
 					<g:if test="${!museeFavoris.toList().id.contains(museeInstance.id)}">
-						<a class="addToFavoris" href="${createLink(controller: "index",action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}"> Ajouter à ma liste</a>
+						<a href="${createLink(controller: "index", action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}"> Ajouter à ma liste</a>
 					</g:if>
 				</td>
             </tr>

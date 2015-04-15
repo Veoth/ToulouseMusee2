@@ -10,26 +10,26 @@ class MuseeService {
     }
 
     List<Musee> searchMusee(String inNomMusee, String codePostal, String inNomRue) {
-        def criteria = Musee.createCriteria()
+            def criteria = Musee.createCriteria()
 
-        List<Musee> res = criteria.list {
+            List<Musee> res = criteria.list {
 
-            if (inNomMusee) {
-                like 'nom', "%${inNomMusee}%"
-            }
+                if (inNomMusee) {
+                    like 'nom', "%${inNomMusee}%"
+                }
 
-            if (inNomRue) {
-                adresse {
-                    like 'rue', "%${inNomRue}%"
+                if (inNomRue) {
+                    adresse {
+                        like 'rue', "%${inNomRue}%"
+                    }
+                }
+
+                if (codePostal) {
+                    adresse {
+                        like 'codePostal', "${codePostal}"
+                    }
                 }
             }
-
-            if (codePostal) {
-                adresse {
-                    like 'codePostal', "${codePostal}"
-                }
-            }
-        }
 
         res
     }
