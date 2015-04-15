@@ -77,7 +77,7 @@
         <g:textField name="inNomMusee"/><br/>
 
         <label for="codePostal">Code postal du musée : </label>
-        <g:select name="codePostal" from="${Adresse.list().codePostal.unique()+ ""}" /><br/>
+        <g:select name="codePostal" from="${Adresse.list().codePostal.unique()}" noSelection="${['':'Select One...']}"/><br/>
 
         <label for="inNomRue">Nom (ou partie) de la rue du musée : </label>
         <g:textField name="inNomRue"/><br/>
