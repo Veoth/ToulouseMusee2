@@ -75,7 +75,7 @@
 	</head>
 	<g:if test="${museeFavoris}">
 		<div id="musee-favoris">
-			<h1>Mes musées favoris :</h1>
+			<h1>Mes musées favoris (<a href="${createLink(controller: "demandeVisite")}">Effectuer une demande de visite</a> ):</h1>
 
 			<ul>
 				<g:each in="${museeFavoris}" status="i" var="favori">
