@@ -17,7 +17,6 @@ class IndexController {
     def doSearchMusee() {
         int offset = params.int("offset") ?: 0;
         def museeList = museeService.searchMusee(params.inNomMusee, params.codePostal, params.inNomRue, 5, offset)
-        params.max = 5
         render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(), museeFavoris: session.getAttribute("MuseeFavoris")  as List<Musee>], params: params)
     }
 
