@@ -1,6 +1,5 @@
 <%@ page import="toulousemusee.Musee; toulousemusee.Adresse" %>
 <!DOCTYPE html>
-<>
 	<head>
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
@@ -71,37 +70,63 @@
 			#musee-favoris {
 				padding: 15px;
 			}
+
+			#favoris {
+				margin: 12px;
+			}
+
+			#favoris li {
+				margin-left: 30px;
+			}
+
+			#recherche {
+				margin: 25px;
+			}
+
+			form {
+				margin: 15px;
+			}
+
+			form label {
+				display: inline-block;
+				width: 300px;
+				text-align: left;
+			}
 		</style>
 	</head>
-	<g:if test="${museeFavoris}">
-		<div id="musee-favoris">
-			<h1>Mes musées favoris (<a href="${createLink(controller: "demandeVisite")}">Effectuer une demande de visite</a> ):</h1>
+	<div id="favoris">
+		<g:if test="${museeFavoris}">
+			<div id="musee-favoris">
+				<h1>Mes musées favoris (<a href="${createLink(controller: "demandeVisite")}">Effectuer une demande de visite</a>)</h1>
 
-			<ul>
-				<g:each in="${museeFavoris}" status="i" var="favori">
-					<li>
-						${fieldValue(bean: favori, field: "nom")}
-						<a href="${createLink(controller: "index", action: "suppMuseeToFavoris", params: [museeToSupp: favori.id])}"> Supprimer</a>
-					</li>
-				</g:each>
-			</ul>
-		</div>
-	</g:if>
+				<ul>
+					<g:each in="${museeFavoris}" status="i" var="favori">
+						<li>
+							${fieldValue(bean: favori, field: "nom")}
+							<a href="${createLink(controller: "index", action: "suppMuseeToFavoris", params: [museeToSupp: favori.id])}">Supprimer</a>
+						</li>
+					</g:each>
+				</ul>
+			</div>
+		</g:if>
+	</div>
 
-	<h1>Recherche de musées</h1><br/>
+	<div id="recherche">
+		<h1>Recherche de musées</h1><br/>
 
-    <g:form>
-        <label for="inNomMusee">Nom (ou partie) du musée : </label>
-        <g:textField name="inNomMusee"/><br/>
+		<g:form>
+			<label for="inNomMusee">Nom (ou partie) du musée : </label>
+			<g:textField name="inNomMusee"/><br/>
 
-        <label for="codePostal">Code postal du musée : </label>
-        <g:select name="codePostal" from="${Adresse.list().codePostal.unique()}" noSelection="${['':'Select One...']}"/><br/>
+			<label for="codePostal">Code postal du musée : </label>
+			<g:select name="codePostal" from="${Adresse.list().codePostal.unique()}" noSelection="${['':'Select One...']}"/><br/>
 
-        <label for="inNomRue">Nom (ou partie) de la rue du musée : </label>
-        <g:textField name="inNomRue"/><br/>
+			<label for="inNomRue">Nom (ou partie) de la rue du musée : </label>
+			<g:textField name="inNomRue"/><br/><br/>
 
-        <g:actionSubmit value="Rechercher" action="doSearchMusee"/>
-    </g:form>
+			<g:actionSubmit value="Rechercher" action="doSearchMusee"/>
+		</g:form>
+	</div>
     <table>
         <thead>
         <tr>
@@ -112,7 +137,6 @@
 
             <g:sortableColumn property="telephone" title="${message(code: 'musee.telephone.label', default: 'Telephone')}" />
 
-            <g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
 
             <g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Metro')}" />
 
@@ -120,7 +144,7 @@
 
             <th><g:message code="musee.gestionnaire.label" default="Gestionnaire" /></th>
 
-			<th>Ajout favoris</th>
+			<th>Favoris</th>
 
         </tr>
         </thead>
@@ -134,8 +158,6 @@
 
                 <td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
 
-                <td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
-
                 <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 
                 <td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
@@ -144,7 +166,7 @@
 
 				<td>
 					<g:if test="${!museeFavoris.toList().id.contains(museeInstance.id)}">
-						<a href="${createLink(controller: "index", action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}"> Ajouter à ma liste</a>
+						<a href="${createLink(controller: "index", action: "addMuseeToFavoris",params: [museeToAdd: museeInstance.id])}">Ajouter</a>
 					</g:if>
 				</td>
             </tr>
@@ -152,7 +174,7 @@
         </tbody>
     </table>
     <div class="pagination">
-        <g:paginate total="${museeInstanceCount ?: 0}" max="5" />
+		<!--<g:paginate controller="index" action="doSearchMusee" total="${museeInstanceCount} ?: 0" params="${params}"/>-->
     </div>
 </body>
 </html>

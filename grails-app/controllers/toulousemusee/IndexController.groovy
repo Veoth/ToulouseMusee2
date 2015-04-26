@@ -10,12 +10,15 @@ class IndexController {
             session.setAttribute("MuseeFavoris", new ArrayList<Musee>())
         }
 
+        System.out.println(params.offset)
         [museeFavoris: session.getAttribute("MuseeFavoris") as List<Musee>]
     }
 
     def doSearchMusee() {
-        def museeList = museeService.searchMusee(params.inNomMusee, params.codePostal, params.inNomRue)
-        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(), museeFavoris: session.getAttribute("MuseeFavoris")  as List<Musee>])
+        int offset = params.int("offset") ?: 0;
+        def museeList = museeService.searchMusee(params.inNomMusee, params.codePostal, params.inNomRue, 5, offset)
+        params.max = 5
+        render(view: 'index', model: [museeInstanceList: museeList, museeInstanceCount: museeList.size(), museeFavoris: session.getAttribute("MuseeFavoris")  as List<Musee>], params: params)
     }
 
     def addMuseeToFavoris() {

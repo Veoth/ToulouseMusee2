@@ -26,6 +26,16 @@ class GestionnaireSpec extends Specification {
     }
 
     @Unroll
+    void "test toString gestionnaire"() {
+
+        given: "un gestionnaire initialise avec des paramètres correct"
+        Gestionnaire gestionnaire = new Gestionnaire(nom: "Charles")
+
+        expect: "l'adresse est valide"
+        gestionnaire.toString() == "Charles"
+    }
+
+    @Unroll
     void "test l'invalidite d'un gestionnaire non valide"(String unNom, def _) {
 
         given: "un gestionnaire initialise avec des paramètres incorrect"

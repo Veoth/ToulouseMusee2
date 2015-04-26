@@ -1,6 +1,5 @@
 <%@ page import="toulousemusee.Musee; toulousemusee.Adresse" %>
 <!DOCTYPE html>
-<>
 <head>
     <meta name="layout" content="main"/>
     <title>Demande de visite de musées</title>
@@ -73,6 +72,12 @@
     }
     </style>
 </head>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+        </ul>
+    </div>
+
     <h1>Votre demande à bien été prise en compte</h1>
     <p>Le code relatif à votre demande est le suivant : ${code}</p>
 

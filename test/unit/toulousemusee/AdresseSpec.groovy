@@ -28,6 +28,16 @@ class AdresseSpec extends Specification {
     }
 
     @Unroll
+    void "test toString adresse"() {
+
+        given: "une adresse initialise avec des paramètres correct"
+        Adresse adresse = new Adresse(rue: "rue des mant", ville: "Toulouse", codePostal: "31000", numero: "19")
+
+        expect: "l'adresse est valide"
+        adresse.toString() == "19 rue des mant 31000 Toulouse"
+    }
+
+    @Unroll
     void "test l'invalidite d'une adresse non valide"(String uneRue, String uneVille, String unCP, String unNumero) {
 
         given: "une adresse initialise avec des paramètres incorrect"

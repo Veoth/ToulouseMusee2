@@ -16,98 +16,9 @@ class MuseeController {
         respond Musee.list(params), model:[museeInstanceCount: Musee.count()]
     }
 
-    def show(Musee museeInstance) {
-        respond museeInstance
-    }
-
-    def create() {
-        respond new Musee(params)
-    }
 
     def doSearchMusee() {
         def museeList = museeService.searchMusee(params.nomMusee, params.codePostal, params.nomRue)
         render(view: 'index', model: [MuseeInstanceList: museeList, MuseeInstanceCount: museeList.size()])
-    }
-
-    @Transactional
-    def save(Musee museeInstance) {
-        if (museeInstance == null) {
-            notFound()
-            return
-        }
-
-        if (museeInstance.hasErrors()) {
-            respond museeInstance.errors, view:'create'
-            return
-        }
-
-        //museeInstance.save flush:true
-        museeService.insertOrUpdateMusee(museeInstance, museeInstance.adresse, museeInstance.gestionnaire)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'musee.label', default: 'Musee'), museeInstance.id])
-                redirect museeInstance
-            }
-            '*' { respond museeInstance, [status: CREATED] }
-        }
-    }
-
-    def edit(Musee museeInstance) {
-        respond museeInstance
-    }
-
-    @Transactional
-    def update(Musee museeInstance) {
-        if (museeInstance == null) {
-            notFound()
-            return
-        }
-
-        if (museeInstance.hasErrors()) {
-            respond museeInstance.errors, view:'edit'
-            return
-        }
-
-        //museeInstance.save flush:true
-        museeService.insertOrUpdateMusee(museeInstance, museeInstance.adresse, museeInstance.gestionnaire)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Musee.label', default: 'Musee'), museeInstance.id])
-                redirect museeInstance
-            }
-            '*'{ respond museeInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(Musee museeInstance) {
-
-        if (museeInstance == null) {
-            notFound()
-            return
-        }
-
-        //museeInstance.delete flush:true
-        museeService.deleteMusee(museeInstance)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Musee.label', default: 'Musee'), museeInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'musee.label', default: 'Musee'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
     }
 }

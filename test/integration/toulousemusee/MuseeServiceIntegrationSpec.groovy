@@ -10,6 +10,7 @@ class MuseeServiceIntegrationSpec extends Specification {
 
     def museeService
 
+    @Unroll
     void "test insertion ou maj d'un musee avec un gestionnaire et une adresse"() {
 
         given:"un musée©"
@@ -46,6 +47,7 @@ class MuseeServiceIntegrationSpec extends Specification {
         gestionnaire.musees.contains(resultMusee)
     }
 
+    @Unroll
     void "test suppression d'un musée"() {
 
         given: "un musée existant en base"
